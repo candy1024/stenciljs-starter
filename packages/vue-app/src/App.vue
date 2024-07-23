@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+const title = document.title ?? ''
+const show = ref(true)
+
+function onClick() {
+  show.value = !show.value;
+}
 </script>
 
 <template>
@@ -8,10 +16,13 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <my-component first="Your" last="Name"></my-component>
-      <my-button>
-        <span slot="btn-head" id="btnIcon">ICON</span>
-      </my-button>
+      <div>
+        <my-component first="Your" :middle="title" last="Name"></my-component>
+        <my-button :display="show">
+          <span slot="btn-head" id="btnIcon">ICON</span>
+        </my-button>
+        <button @click="onClick">switch</button>
+      </div>
       <HelloWorld msg="You did it!" />
 
       <nav>

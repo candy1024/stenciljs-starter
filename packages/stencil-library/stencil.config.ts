@@ -1,6 +1,7 @@
 import { Config } from '@stencil/core';
 import { angularOutputTarget } from '@stencil/angular-output-target';
 import { vueOutputTarget } from '@stencil/vue-output-target';
+import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'stencil-library',
@@ -30,7 +31,11 @@ export const config: Config = {
     vueOutputTarget({
       componentCorePackage: 'stencil-library',
       proxiesFile: '../vue-lib/lib/components.ts',
-    })
+    }),
+    reactOutputTarget({
+      componentCorePackage: 'stencil-library',
+      proxiesFile: '../react-lib/lib/components/stencil-generated/index.ts',
+    }),
   ],
   testing: {
     browserHeadless: "new",
